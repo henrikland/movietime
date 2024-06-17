@@ -1,9 +1,7 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import { MoviesApi } from "./moviesApi";
 
-export default async function SearchPage() {
-  const { results } = await getData();
+export default async function SearchPage({ searchParams }: any) {
+  const { results } = await getData(searchParams.q ?? "");
 
   return (
     <div>
@@ -14,10 +12,10 @@ export default async function SearchPage() {
   );
 }
 
-async function getData() {
+async function getData(query: string) {
   "use server";
   const api = new MoviesApi(process.env.MOVIE_DB_API_KEY ?? "");
-  const data = await api.search("jaws");
+  const data = await api.search(query);
 
   return data;
 }
