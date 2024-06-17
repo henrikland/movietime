@@ -1,0 +1,13 @@
+.header {
+  width: 100vw;
+  height: 70px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+}
