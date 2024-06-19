@@ -52,6 +52,7 @@ export interface MovietimeItem {
   imagePath: string;
   date?: string;
   score?: number;
+  genres?: string[];
 }
 
 function movieToMovietimeItem(movie: Movie): MovietimeItem {

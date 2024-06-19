@@ -43,7 +43,7 @@ export default async function Page({ searchParams }: Props) {
                         title={item.name}
                         subTitle={`${new Date(
                           item.date ?? ""
-                        ).getFullYear()} • `}
+                        ).getFullYear()} • ${item.genres?.join(", ")}`}
                         imageSrc={`${data.config.imageBaseUrl}${data.config.imageSize}/${item.imagePath}`}
                       />
                     ))}
@@ -87,11 +87,9 @@ async function getData(query: string) {
 
   const { movie, tv, person } = groupBy(results.results, "media_type");
   const moviesAndTvShows = movie.concat(tv) as (Movie | TvShow)[]; // FIXME we "know" the type here
+  const genres = uniqBy(movieGenres.concat(tvGenres), "id");
 
-  const genresMap = buildGenresMap(
-    moviesAndTvShows,
-    uniqBy(movieGenres.concat(tvGenres), "id")
-  );
+  const genresMap = buildGenresMap(moviesAndTvShows, genres);
 
   return {
     genresMap,
@@ -118,8 +116,13 @@ function buildGenresMap(moviesAndTvShows: (Movie | TvShow)[], genres: Genre[]) {
   );
 
   moviesAndTvShows.forEach((item) => {
+    const movietimeItem = convertToMovietimeItem(item);
+    // this is weird but
+    movietimeItem.genres = [];
+
     item.genre_ids.forEach((id) => {
-      moviesByGenre[idToGenre[id]].push(convertToMovietimeItem(item));
+      movietimeItem.genres?.push(idToGenre[id]);
+      moviesByGenre[idToGenre[id]].push(movietimeItem);
     });
   });
 
