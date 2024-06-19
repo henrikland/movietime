@@ -1,7 +1,13 @@
 // MovieDB types
 
-export interface Movie {
+type MediaType = "movie" | "tv" | "person";
+
+interface Base {
   id: number;
+  media_type: MediaType;
+}
+
+export interface Movie extends Base {
   media_type: "movie";
   title: string;
   genre_ids: number[];
@@ -10,8 +16,7 @@ export interface Movie {
   release_date: string;
   vote_average: number;
 }
-export interface TvShow {
-  id: number;
+export interface TvShow extends Base {
   media_type: "tv";
   name: string;
   genre_ids: number[];
@@ -20,8 +25,7 @@ export interface TvShow {
   vote_average: number;
 }
 
-export interface Actor {
-  id: number;
+export interface Actor extends Base {
   media_type: "person";
   name: string;
   profile_path: string;
@@ -43,7 +47,7 @@ export interface Genre {
 
 export interface MovietimeItem {
   id: number;
-  type: "movie" | "tv" | "actor";
+  type: MediaType;
   name: string;
   imagePath: string;
   date?: string;
@@ -75,7 +79,7 @@ function tvShowToMovietimeItem(tvShow: TvShow): MovietimeItem {
 function actorToMovietimeItem(actor: Actor): MovietimeItem {
   return {
     id: actor.id,
-    type: "actor",
+    type: "person",
     name: actor.name,
     imagePath: actor.profile_path,
   };
