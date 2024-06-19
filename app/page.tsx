@@ -31,26 +31,28 @@ export default async function Page({ searchParams }: Props) {
         <Search />
         {data && (
           <>
-            {" "}
             {Object.entries(data.genresMap)
-              .filter(([genre, items]) => items.length > 0)
+              .filter(([_, items]) => items.length > 0)
               .map(([genre, items]) => (
-                <Fragment key={genre}>
-                  <h2>{genre}</h2>
+                <div key={genre} className={styles.genreContainer}>
+                  <h2 className={styles.genreTitle}>{genre}</h2>
                   <Carousel>
                     {items.map((item) => (
                       <Card
                         key={item.id}
                         title={item.name}
+                        subTitle={`${new Date(
+                          item.date ?? ""
+                        ).getFullYear()} • `}
                         imageSrc={`${data.config.imageBaseUrl}${data.config.imageSize}/${item.imagePath}`}
                       />
                     ))}
                   </Carousel>
-                </Fragment>
+                </div>
               ))}
             {data.actors && (
-              <>
-                <h2>Actors</h2>
+              <div className={styles.genreContainer}>
+                <h2 className={styles.genreTitle}>Actors</h2>
                 <Carousel>
                   {data.actors.map((item) => (
                     <Card
@@ -60,7 +62,7 @@ export default async function Page({ searchParams }: Props) {
                     />
                   ))}
                 </Carousel>
-              </>
+              </div>
             )}
           </>
         )}
