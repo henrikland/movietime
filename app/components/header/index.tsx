@@ -10,6 +10,7 @@ const Header: React.FC = () => {
         <a href="/actors">Actors</a>
         <button>Sign In</button>
       </nav>
+      <p className={styles.hamburger}>🍔</p>
     </header>
   );
 };
