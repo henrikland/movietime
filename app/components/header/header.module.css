@@ -2,12 +2,44 @@
   width: 100vw;
   height: 70px;
   background-color: var(--white);
+  padding: 1rem 3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  font-style: normal;
 }
 
 .links {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+}
+
+.button {
+  background-color: var(--blue);
+  width: 77px;
+  height: 42px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+
+  &:hover {
+    background-color: white;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+  }
 }
