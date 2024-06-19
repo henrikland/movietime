@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./search.module.css";
 
 const Search: React.FC = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const Search: React.FC = () => {
   return (
     <>
       <input
+        className={styles.input}
         type="search"
         placeholder="Search movies, tv-shows or actors"
         onKeyDown={onKeyDown}

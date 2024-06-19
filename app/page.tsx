@@ -28,7 +28,9 @@ export default async function Page({ searchParams }: Props) {
     <>
       <Header />
       <div className={styles.main}>
-        <Search />
+        <div className={styles.searchContainer}>
+          <Search />
+        </div>
         {data && (
           <>
             {Object.entries(data.genresMap)
@@ -44,6 +46,7 @@ export default async function Page({ searchParams }: Props) {
                         subTitle={`${new Date(
                           item.date ?? ""
                         ).getFullYear()} • ${item.genres?.join(", ")}`}
+                        score={item.score}
                         imageSrc={`${data.config.imageBaseUrl}${data.config.imageSize}/${item.imagePath}`}
                       />
                     ))}

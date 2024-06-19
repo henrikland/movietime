@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <a href="/movies">Movies</a>
         <a href="/tvshows">TV Shows</a>
         <a href="/actors">Actors</a>
-        <button className={styles.button}>Sign In</button>
+        <button>Sign In</button>
       </nav>
     </header>
   );

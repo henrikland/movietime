@@ -12,6 +12,19 @@
   }
 }
 
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0 8rem;
+
+  @media screen and (max-width: 640px) {
+    padding: 0 2rem;
+  }
+}
+
 .genreContainer {
   width: 100%;
   margin-top: 38px;
